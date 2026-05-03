@@ -1,8 +1,8 @@
-import os
 import logging
 import requests
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from config import BOT_TOKEN  # Import your bot token from config.py
 
 # Enable logging
 logging.basicConfig(
@@ -117,10 +117,9 @@ def error(update: Update, context: CallbackContext) -> None:
 
 def main() -> None:
     """Start the bot."""
-    BOT_TOKEN = os.environ.get('BOT_TOKEN')
-    
+    # Check if token is available
     if not BOT_TOKEN:
-        logger.error("No BOT_TOKEN provided!")
+        logger.error("No BOT_TOKEN found in config.py")
         return
     
     # Create the Updater and pass it your bot's token.
