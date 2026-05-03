@@ -1,7 +1,7 @@
 import logging
 import requests
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 from config import BOT_TOKEN  # Import your bot token from config.py
 
 # Enable logging
@@ -132,7 +132,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     
     # on message - check BIN
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, check_bin))
+    dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, check_bin))
     
     # log all errors
     dispatcher.add_error_handler(error)
